@@ -1,0 +1,195 @@
+#include <iostream>
+#include <array>
+#include<time.h>
+using namespace std;
+
+//№ 1. Переобразовать матрицу: элементы строки, в которой находится минимальный элемент матрицы, заменить нулями
+/*int main()
+{
+    array<array<int, 4>, 4> a;
+    for(int i=0;i<4;i++)
+        for(int j=0;j<4;j++)
+            a[i][j]=rand()%10;
+
+    int  min_el_j, min_el;
+    for(int i=0;i<4;i++){
+        for(int j=0;j<6;j++){
+            if(a[i][j]<min_el){
+                min_el = a[i][j];
+                min_el_j = i;
+             }
+         }
+    }
+    for(int i=0;i<4;i++){
+        a[min_el_j][i] = 0;
+    }
+
+    for(int i=0;i<4;i++){
+        for(int j=0;j<4;j++)
+            cout<<a[i][j]<<' ';
+    cout<<endl;
+
+    }
+}*/
+//№ 6. Дана матрица. Составить массив, каждый элемент которого равен максимальному элементу соотвветствующей строки матрицы
+/*int main(){
+    array<array<int, 3>, 3> num;
+    for(int i=0;i<3;i++)
+        for(int j=0;j<3;j++)
+            num[i][j]=rand()%20;
+
+    array<int, 3> max={0,0,0};
+
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++)
+            if(num[i][j]>max[i])
+                max[i]=num[i][j];}
+
+   for(int i=0;i<3;i++)
+        for(int j=0;j<3;j++)
+            num[i][j]=max[i];
+
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++)
+            cout<<num[i][j]<<' ';
+    cout<<endl;}
+}*/
+//№ 8. Дана матрица. Элементы первой строки - мощность электромотора, второй строки - категория матора(от 1 до 3). Найти самый мощный двигатель категории 3.
+/*int main(){
+    array<array<int, 10>, 2> mat;
+    array<int, 10> max;
+
+    for(int i=0;i<1;i++){
+        for(int j=0;j<10;j++)
+            mat[i][j]=rand()%100+20;}
+
+    for(int i=1;i<2;i++){
+        for(int j=0;j<10;j++)
+            mat[i][j]=rand()%3+1;}
+
+
+    for(int j=0;j<10;j++){
+        for(int i=0;i<2;i++)
+            cout<<mat[i][j]<<' ';
+    cout<<endl;}
+    cout<<endl;
+
+    for(int i=0;i<10;i++)
+        max[i]=0;
+
+    for(int j=0;j<10;j++)
+        if(mat[1][j]==3)
+            max[j]=mat[0][j];
+
+    int MAX=0;
+    for(int i=0;i<max.size();i++){
+            if(max[i]>MAX)
+                MAX=max[i];}
+    cout<<MAX<<endl;
+}*/
+/*№ 9b.Объявить, реализовать заполнение данными с клавиатуры ИЛИ из файла и вывести
+на экран; матрицу, описывающую следующие сущности. Предложите свой вариант.
+b. Состояние робота на шахматной доске. Робот характеризуется уровнем
+заряда, скоростью движения.
+
+struct Robot
+{
+    int power;
+    int speed;
+};
+const int lines = 3;
+const int colums = 3;
+void func(array<array<Robot,colums>,lines> dask)
+{
+    for(int i=0;i<lines;i++)
+    {
+        for(int j=0;j<colums;j++)
+        {
+            cout<<dask[j][i].power<<";"<<dask[j][i].speed<<" ";
+        }
+        cout<<std::endl;
+    }
+}
+int main()
+{
+    array<array<Robot,colums>,lines> dask;
+    for(int i=0;i<lines;i++)
+    {
+        for(int j=0;j<colums;j++)
+        {
+            cout<<"Power: ";
+            cin>>dask[j][i].power;
+            cout<<"Speed: ";
+            cin>>dask[j][i].speed;
+        }
+    }
+    cout<<endl;
+    func(dask);
+    return 0;
+}
+*/
+
+/* №10.4.В квадратной матрице найти сумму положительных элементов, лежащих на и выше
+главной диагонали и расположенных в чётных столбцах.
+
+int main()
+{
+ int t = 7, y = 0;
+srand(time(NULL));
+array <array <int, 8>, 8> Matrix;
+for(int i = 1; i <= 7; i++){
+for(int q = 1; q <= 7; q++){
+ Matrix[i][q] = rand()%70 - 15;
+
+ if( (Matrix[i][q] < 0) && (Matrix[i][q] > -10)){
+ cout << " " << Matrix[i][q];
+}
+
+if( (Matrix[i][q] < -9) && (Matrix[i][q] > -100)){
+                   cout << " " << Matrix[i][q];
+ }
+if( (Matrix[i][q] > -1) && (Matrix[i][q] < 10)){
+    cout << " " << Matrix[i][q];
+                   }
+if( (Matrix[i][q] > 9) && (Matrix[i][q] < 100)){
+                           cout << "  " << Matrix[i][q];
+                      }
+      }
+ cout << endl;
+    }
+
+cout << endl << endl;
+
+ for(int i = 1; i <= 7; i++){
+ for(int q = 1; q <= t; q++){
+ if((Matrix[i][q] > 0) && (q % 2 == 0)) {
+ y += Matrix[i][q];
+            }
+         }
+ t -= 1;
+        }
+
+ for(int i = 1; i <= 7; i++){ // цикл вывода изменённых значений по вертикали матрицы.
+ for(int q = 1; q <= 7; q++){ // цикл вывода изменённых значений по горизонтали матрицы.
+
+ if( (Matrix[i][q] < 0) && (Matrix[i][q] > -10)){
+ cout << " " << Matrix[i][q];
+            }
+
+ if( (Matrix[i][q] < -9) && (Matrix[i][q] > -100)){
+ cout << " " << Matrix[i][q];
+               }
+ if( (Matrix[i][q] > -1) && (Matrix[i][q] < 10)){
+ cout << " " << Matrix[i][q];
+                    }
+
+ if( (Matrix[i][q] > 9) && (Matrix[i][q] < 100)){
+ cout << " " << Matrix[i][q];
+                       }
+        }
+ cout << endl;
+    }
+
+ cout << endl << "Resultat: " << y << endl;
+ return 0;
+}
