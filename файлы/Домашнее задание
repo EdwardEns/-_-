@@ -1,0 +1,134 @@
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <string>
+
+Задание 1 (2b)
+Реализовать чтение ID3v1 MP3-файла. Будьте внимательны, не все MP3-файлы
+содержат заполненный ID3-тег; b. Исполнитель
+
+ int main()
+ {
+ std::fstream file;
+ file.open("1.mp3", std::ios::binary | std::ios::in);
+
+ if(!file.is_open()){
+ std::cout << "file don't work" << "\n";
+ return - 1;
+ }
+
+ char ID3_tag[1024];
+ int offset = 48;
+ int size=offset + 10;
+ int i=offset;
+
+ file.read(ID3_tag, 1024);
+
+ file.close();
+ for (i; i< size; i++){
+ std::cout << ID3_tag[i];
+    }
+
+ std::cout << "\n";
+ return 0;
+}
+
+
+Задание 2(3j)
+Протабулировать функцию. Начальную и финальную точки, шаг, параметр Ч
+считывать из файла in.txt. Результат записывать в текстовый файл out.txt. Формат
+записи данных:
+x0, y(x0)
+x1, y(x1)
+x2, y(x2)
+и т.д.
+j. 𝑦 = x + x^2 / 3 + x^3 / 4 + ... x^C/(C+1)
+*/
+
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include<cmath>
+
+int main() {
+    double x0, x1, step, C; // параметр Ч - это C
+    std::ifstream f("input.txt");
+    f >> x0 >> x1 >> step >> C;
+    f.close();
+
+    std::ofstream fout("out.txt");
+    for (double x = x0; x <= x1; x += step) {
+        double y = 0;
+        for (int i = 1; i <= C; i++) {
+            if( i == 1)
+                y += x;
+            else
+                y += pow(x, i) / (i + 1);
+        }
+        fout << x << ", " << y << std::endl;
+    }
+    fout.close();
+
+    std::cout << "Data save in out.txt" << std::endl;
+
+    return 0;
+}
+
+Задание 3(5)
+Пользователь вводит данные о студентах: Фамилия, Средняя оценка, Курс.
+
+Организовать запись данных из массива структур в файл в следующем формате: 1
+строка Фамилия, 2 строка Средняя оценка, 3 строка Курс. Остальные строки
+повторяют тройками эти данные для других студентов. Организовать переменные
+для хранения информации.
+
+#include <iostream>
+#include <fstream>
+#include <array>
+#include <string>
+
+int main()
+{
+ std::fstream file;
+
+
+ file.open("Profiles.txt", std::ios::out | std::ios::in);
+
+
+ if((!file.is_open()) || (!file.is_open())){
+ std::cout << "Error" << "\n";
+ return - 1;
+ }
+
+
+ struct info{
+ std::string surname[2];
+ float middle[2];
+ int kurse[2];
+ };
+
+
+ struct info students[2];
+ for(int v = 0; v < 2; v++){
+ for(int i = 0; i < 2; i++){
+ std::cin >> students[i].surname[v];
+ std::cin >> students[i].middle[v];
+ std::cin >> students[i].kurse[v];
+ }
+ }
+ std::cout << "Ready!";
+
+
+ for(int v = 0; v < 2; v++){
+ for(int i = 0; i < 2; i++){
+ file << students[i].surname[v] << "\n" << students[i].middle[v] << "\n" << students[i].kurse[v] << "\n";
+ }
+ }
+
+
+ file.close();
+
+
+ std::cout << "\n";
+ return 0;
+ }
